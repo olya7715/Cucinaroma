@@ -1,7 +1,7 @@
 import Image from "next/image";
-import IconTime from "../../../assets/icons/icon_time.svg";
-import IconPrice from "../../../assets/icons/icon_price.svg";
 import LinkYelow from "@/components/common/Links/LinkYelow";
+import IconPrice from "../../../assets/icons/icon_price.svg";
+import IconTime from "../../../assets/icons/icon_time.svg";
 import { DataCardMaster } from "../../../data/dataMaster";
 
 function CardMaster({
@@ -13,7 +13,7 @@ function CardMaster({
   linkTitle,
 }: DataCardMaster) {
   return (
-    <div className="flex flex-col gap-4">
+    <article className="flex flex-col gap-4">
       <Image
         src={src}
         width={734}
@@ -37,7 +37,7 @@ function CardMaster({
         linkTitle={linkTitle}
         className="text-center"
       />
-    </div>
+    </article>
   );
 }
 

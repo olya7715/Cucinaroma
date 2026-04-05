@@ -1,12 +1,21 @@
-import WhatsAppLink from "../../common/Links/WhatsAppLink";
+import { Suspense } from "react";
 import Container from "../../common/Container";
+import WhatsAppLink from "../../common/Links/WhatsAppLink";
 import HeroSlider from "./Slider";
+
+function HeroSliderFallback() {
+  return (
+    <div className="bg-main_blue/80 h-[520px] rounded-[32px] md:h-[640px] xl:h-[820px]" />
+  );
+}
 
 function HeroSection() {
   return (
     <section className="py-10 md:py-16 xl:py-0 xl:pt-5 xl:pb-20">
       <Container className="relative">
-        <HeroSlider />
+        <Suspense fallback={<HeroSliderFallback />}>
+          <HeroSlider />
+        </Suspense>
         <WhatsAppLink
           place="hero_section"
           className="z-[5] xl:top-2 xl:right-32"

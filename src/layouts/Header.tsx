@@ -1,6 +1,6 @@
 import Container from "@/components/common/Container";
-import Logo from "@/components/common/Logo";
 import LinkYelow from "@/components/common/Links/LinkYelow";
+import Logo from "@/components/common/Logo";
 
 function Header() {
   return (
@@ -11,9 +11,9 @@ function Header() {
         <LinkYelow
           linkTitle="Бронювати"
           href="/#master"
-          type="aLink"
+          type="nextLink"
           className="max-w-fit"
-          aria_label="Посилання на секцію вибору майстер-класу"
+          aria_label="Перейти до секції вибору майстер-класу"
         />
       </Container>
     </header>

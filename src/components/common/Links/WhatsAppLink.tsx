@@ -10,7 +10,7 @@ function WhatsAppLink({ place, className }: Props) {
       href="https://wa.me/393249888194"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Посилання на номер телефону ватсапп"
+      aria-label="Написати в WhatsApp Cucina Roma"
       className={cn(
         "inline-flex h-fit w-fit items-center justify-center",
         place === "hero_section" &&
