@@ -108,7 +108,7 @@ export default function HeroSlider() {
         modules={[EffectFade, Pagination, Autoplay]}
         className="mySwiper h-[680px] md:max-h-[80vh]"
       >
-        {currentSlides.map((slide, index) => (
+        {currentSlides.map((slide) => (
           <SwiperSlide key={slide.src}>
             <Image
               src={slide.src}
@@ -116,7 +116,6 @@ export default function HeroSlider() {
               fill
               className="max-h-[100vh] rounded-4xl object-cover"
               sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              priority={index === 0}
             />
           </SwiperSlide>
         ))}
