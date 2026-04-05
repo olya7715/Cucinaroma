@@ -34,7 +34,7 @@ export const dataMaster: DataCardMaster[] = [
   },
   {
     src: "/images/master_vino.jpg",
-    name: "Винна дегустація, італійські закуски",
+    name: "Винна дегустація та італійські закуски",
     prise: 80,
     duration: 2,
     linkTitle: "Замовити",

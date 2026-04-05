@@ -1,12 +1,12 @@
 import Container from "../../Container";
-import TitleSection from "../../TitleSection";
 import InstagramLink from "../../Links/InstagramLink";
+import TitleSection from "../../TitleSection";
 
 function SectionInstagram() {
   return (
-    <section className="py-10 xl:py-20">
+    <section className="py-10 xl:py-20" aria-labelledby="instagram-title">
       <Container>
-        <TitleSection title="Наш інстаграм" />
+        <TitleSection id="instagram-title" title="Наш інстаграм" />
         <InstagramLink isIcon={false} />
         <ul className="mt-2.5 flex justify-around gap-5">
           <li

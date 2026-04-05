@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/utils/cn";
 
 type Props = {
@@ -8,13 +9,8 @@ type Props = {
 
 function NavMenu({ className, type, onClick }: Props) {
   return (
-    <nav className={cn(className)}>
-      <NavLink
-        onClick={onClick}
-        href="/#about"
-        type={type}
-        linkName="Про нас"
-      />
+    <nav className={cn(className)} aria-label="Основна навігація">
+      <NavLink onClick={onClick} href="/#about" type={type} linkName="Про нас" />
 
       <NavLink
         onClick={onClick}
@@ -22,6 +18,9 @@ function NavMenu({ className, type, onClick }: Props) {
         type={type}
         linkName="Майстер-класи"
       />
+      {type === "footer" ? (
+        <NavLink onClick={onClick} href="/faq" type={type} linkName="FAQ" />
+      ) : null}
     </nav>
   );
 }
@@ -35,7 +34,7 @@ type PropsLink = {
 
 function NavLink({ href, linkName, type, onClick }: PropsLink) {
   return (
-    <a
+    <Link
       onClick={onClick}
       href={href}
       className={cn(
@@ -47,6 +46,6 @@ function NavLink({ href, linkName, type, onClick }: PropsLink) {
       )}
     >
       {linkName}
-    </a>
+    </Link>
   );
 }

@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, IBM_Plex_Serif } from "next/font/google";
-import "./globals.css";
-import Header from "@/layouts/Header";
-import Footer from "@/layouts/Footer";
-import Cookies from "@/components/Cookies";
-import SEOJsonLd from "@/utils/SEOJsonLd";
 import { Toaster } from "sonner";
-import ButtonScrollToTop from "@/components/ButtonScrollToTop";
 import { Analytics } from "@/components/Analytics";
+import ButtonScrollToTop from "@/components/ButtonScrollToTop";
+import Cookies from "@/components/Cookies";
 import VideoIntroduction from "@/components/VideoIntroduction";
+import Footer from "@/layouts/Footer";
+import Header from "@/layouts/Header";
+import SEOJsonLd from "@/utils/SEOJsonLd";
+import "./globals.css";
+
+const SITE_URL = "https://www.cucinaroma.com.ua";
+const SITE_NAME = "Cucina Roma";
+const DEFAULT_DESCRIPTION =
+  "Україномовні гастрономічні враження в Римі: майстер-класи, дегустації, авторські екскурсії, трансфери та особливі події.";
+const OG_IMAGE = "/images/hero_foto1.jpg";
 
 const cormorantGaramond = Cormorant_Garamond({
   weight: ["400", "500", "600"],
@@ -25,36 +31,53 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Cucina Roma",
-  description:
-    "Мрії про Рим та справжню італійську кухню стають реальністю. Відкривайте Італію з душею разом з нами. Вітаємо! Мрієте про подорож до Рима? Ми — україномовний туристичний проєкт, який допоможе вам відкрити Італію. Авторські екскурсії античним Римом. Ватикан. Індивідуальні екскурсії за межі Риму. Організація та комфортний трансфер. Гастрономічні екскурсії для поціновувачів традиційної італійської кухні. Розробка індивідуальних програм для груп туристів, повне супроводження. Організація особливих подій у топових локаціях.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: "/icons/lady.svg",
   },
-  metadataBase: new URL("https://www.cucinaroma.com.ua"),
   openGraph: {
-    title: "Cucina Roma",
-    description:
-      "Авторські екскурсії в Римі. Ватикан, гастротури, трансфери, організація свят. Українською мовою.",
-    url: "https://www.cucinaroma.com.ua",
-    siteName: "Cucina Roma",
     type: "website",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     locale: "uk_UA",
+    title: SITE_NAME,
+    description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: "/images/hero_foto1.jpg",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "Cucina Roma - Твій гід у Римі",
+        alt: "Cucina Roma - твій гастрономічний гід у Римі",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cucina Roma",
-    description: "Мрії про Рим та справжню італійську кухню стають реальністю.",
-    images: ["/images/hero_foto1.jpg"],
+    title: SITE_NAME,
+    description: DEFAULT_DESCRIPTION,
+    images: [OG_IMAGE],
   },
+  category: "travel",
 };
 
 export default function RootLayout({
@@ -63,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uk">
+    <html lang="uk" data-scroll-behavior="smooth">
       <body
         className={`${cormorantGaramond.variable} ${ibmPlexSerif.variable} flex min-h-screen flex-col antialiased`}
       >

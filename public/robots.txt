@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.cucinaroma.com.ua
-
-# Sitemaps
-Sitemap: https://www.cucinaroma.com.ua/sitemap.xml

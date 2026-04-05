@@ -1,35 +1,79 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { EffectFade, Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
-import { EffectFade, Autoplay, Pagination } from "swiper/modules";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-
-const images = {
+const slides = {
   mobile: [
-    "/images/360_hero_1.jpg",
-    "/images/360_hero_2.jpg",
-    "/images/360_hero_3.jpg",
-    "/images/360_hero_4.jpg",
-    "/images/360_hero_5.jpg",
+    {
+      src: "/images/360_hero_1.jpg",
+      alt: "Кулінарний майстер-клас Cucina Roma в центрі Рима",
+    },
+    {
+      src: "/images/360_hero_2.jpg",
+      alt: "Україномовний гастрономічний досвід у Римі",
+    },
+    {
+      src: "/images/360_hero_3.jpg",
+      alt: "Гості Cucina Roma на кулінарному майстер-класі",
+    },
+    {
+      src: "/images/360_hero_4.jpg",
+      alt: "Італійська кухня та атмосфера Рима на події Cucina Roma",
+    },
+    {
+      src: "/images/360_hero_5.jpg",
+      alt: "Гастрономічні враження Cucina Roma в Римі",
+    },
   ],
   tablet: [
-    "/images/768_hero_1.jpg",
-    "/images/768_hero_2.jpg",
-    "/images/768_hero_3.jpg",
-    "/images/768_hero_4.jpg",
-    "/images/768_hero_5.jpg",
+    {
+      src: "/images/768_hero_1.jpg",
+      alt: "Кулінарний майстер-клас Cucina Roma в центрі Рима",
+    },
+    {
+      src: "/images/768_hero_2.jpg",
+      alt: "Україномовний гастрономічний досвід у Римі",
+    },
+    {
+      src: "/images/768_hero_3.jpg",
+      alt: "Гості Cucina Roma на кулінарному майстер-класі",
+    },
+    {
+      src: "/images/768_hero_4.jpg",
+      alt: "Італійська кухня та атмосфера Рима на події Cucina Roma",
+    },
+    {
+      src: "/images/768_hero_5.jpg",
+      alt: "Гастрономічні враження Cucina Roma в Римі",
+    },
   ],
   desktop: [
-    "/images/hero_foto1.jpg",
-    "/images/hero_foto2.jpg",
-    "/images/hero_foto3.jpg",
-    "/images/hero_foto4.jpg",
-    "/images/hero_foto5.jpg",
+    {
+      src: "/images/hero_foto1.jpg",
+      alt: "Кулінарний майстер-клас Cucina Roma в центрі Рима",
+    },
+    {
+      src: "/images/hero_foto2.jpg",
+      alt: "Україномовний гастрономічний досвід у Римі",
+    },
+    {
+      src: "/images/hero_foto3.jpg",
+      alt: "Гості Cucina Roma на кулінарному майстер-класі",
+    },
+    {
+      src: "/images/hero_foto4.jpg",
+      alt: "Італійська кухня та атмосфера Рима на події Cucina Roma",
+    },
+    {
+      src: "/images/hero_foto5.jpg",
+      alt: "Гастрономічні враження Cucina Roma в Римі",
+    },
   ],
 };
 
@@ -47,9 +91,12 @@ export default function HeroSlider() {
 
     handleResize();
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const currentImages = images[device];
+
+  const currentSlides = slides[device];
+
   return (
     <div className="pb-7">
       <Swiper
@@ -61,15 +108,14 @@ export default function HeroSlider() {
         modules={[EffectFade, Pagination, Autoplay]}
         className="mySwiper h-[680px] md:max-h-[80vh]"
       >
-        {currentImages.map((src, index) => (
-          <SwiperSlide key={index}>
+        {currentSlides.map((slide) => (
+          <SwiperSlide key={slide.src}>
             <Image
-              src={src}
-              alt={`Slide ${index + 1}`}
+              src={slide.src}
+              alt={slide.alt}
               fill
               className="max-h-[100vh] rounded-4xl object-cover"
               sizes="(max-width: 480px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              priority={index === 0}
             />
           </SwiperSlide>
         ))}
