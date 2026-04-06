@@ -49,13 +49,13 @@ function SectionDetailInfoMaster({ page }: Pick<DataCardMaster, "page">) {
                   <TextBody className="text-text">{item}</TextBody>
                 </li>
               ))}
-              {page !== "wino" ? (
+              {/* {page !== "wino" ? (
                 <li>
                   <p className="btn_text text-text">
                     У вартість входить келих Prosecco.
                   </p>
                 </li>
-              ) : null}
+              ) : null} */}
             </ul>
             <FormGetUserData
               className="mt-0"
