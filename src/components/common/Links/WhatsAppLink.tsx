@@ -1,3 +1,5 @@
+"use client";
+
 import WhatsUpIcon1 from "@/assets/icons/whatsapp1.svg";
 import WhatsUpIcon from "@/assets/icons/whatsapp.svg";
 import { trackClarityEvent } from "@/utils/clarity";
