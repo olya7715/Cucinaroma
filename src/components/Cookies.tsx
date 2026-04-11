@@ -1,25 +1,23 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import { cookiesAcceptedValue, cookiesStorageKey } from "@/constants/cookies";
 import { grantClarityConsent, trackClarityEvent } from "@/utils/clarity";
 import ButtonYelow from "./common/ButtonYelow";
-
-const keyOfLocalStorageCookies = "isCookiesAccepted";
-const cookiesAccepted = "CookiesAccepted";
 
 function Cookies() {
   const [isAccepted, setIsAccepted] = useState(false);
   const storedCookieValue = useSyncExternalStore(
     () => () => undefined,
-    () => localStorage.getItem(keyOfLocalStorageCookies),
-    () => cookiesAccepted,
+    () => localStorage.getItem(cookiesStorageKey),
+    () => cookiesAcceptedValue,
   );
   const isCookies = isAccepted || Boolean(storedCookieValue);
 
   if (isCookies) return null;
 
   const handleClickCookies = () => {
-    localStorage.setItem(keyOfLocalStorageCookies, cookiesAccepted);
+    localStorage.setItem(cookiesStorageKey, cookiesAcceptedValue);
     grantClarityConsent();
     trackClarityEvent("cookie_accept");
     setIsAccepted(true);
