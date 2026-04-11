@@ -38,7 +38,7 @@ function NavLink({ href, linkName, type, onClick }: PropsLink) {
       onClick={onClick}
       href={href}
       className={cn(
-        "hover:text-hover active:text-pressed leading-[150%] font-medium tracking-[0.01em] transition-all duration-500",
+        "leading-[150%] font-medium tracking-[0.01em] transition-all duration-500 hover:text-hover active:text-pressed",
         type === "header" && "px-4 py-3 text-[14px] text-white uppercase",
         type === "mobilemenu" &&
           "px-4 py-3 text-[14px] leading-[130%] uppercase md:text-[14px]",

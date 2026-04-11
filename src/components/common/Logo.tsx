@@ -10,7 +10,7 @@ function Logo({ className, type }: Props) {
   return (
     <Link
       href="/"
-      aria-label="Cucina Roma — перейти на головну сторінку"
+      aria-label="Cucina Roma - перейти на головну сторінку"
       className={cn(
         isHeader ? "block w-[150px] md:w-[211px]" : "block",
         className,

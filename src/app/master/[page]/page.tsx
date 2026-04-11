@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import MasterPageTracker from "@/components/master/MasterPageTracker";
 import BreadcrumbsJsonLd from "@/components/seo/BreadcrumbsJsonLd";
 import SectionDetailInfoMaster from "@/components/common/sections/SectionDetailInfoMaster/SectionDetailInfoMaster";
 import { dataDetailInfoMaster } from "@/data/dataDetailInfoMaster";
@@ -87,6 +88,7 @@ export default async function MasterPage({
 
   return (
     <>
+      <MasterPageTracker page={page} title={masterDetails.title} />
       <BreadcrumbsJsonLd
         id={`master-${page}-breadcrumbs-jsonld`}
         items={[
