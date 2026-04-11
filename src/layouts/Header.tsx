@@ -1,6 +1,9 @@
+"use client";
+
 import Container from "@/components/common/Container";
 import LinkYelow from "@/components/common/Links/LinkYelow";
 import Logo from "@/components/common/Logo";
+import { trackClarityEvent } from "@/utils/clarity";
 
 function Header() {
   return (
@@ -14,6 +17,7 @@ function Header() {
           type="nextLink"
           className="max-w-fit"
           aria_label="Перейти до секції вибору майстер-класу"
+          onClick={() => trackClarityEvent("header_booking_click")}
         />
       </Container>
     </header>

@@ -1,5 +1,6 @@
 import WhatsUpIcon1 from "@/assets/icons/whatsapp1.svg";
 import WhatsUpIcon from "@/assets/icons/whatsapp.svg";
+import { trackClarityEvent } from "@/utils/clarity";
 import { cn } from "@/utils/cn";
 
 type Props = { place: "footer" | "hero_section"; className?: string };
@@ -11,6 +12,7 @@ function WhatsAppLink({ place, className }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Написати в WhatsApp Cucina Roma"
+      onClick={() => trackClarityEvent(`whatsapp_click_${place}`)}
       className={cn(
         "inline-flex h-fit w-fit items-center justify-center",
         place === "hero_section" &&
@@ -21,7 +23,7 @@ function WhatsAppLink({ place, className }: Props) {
       {place === "hero_section" ? (
         <WhatsUpIcon1 className="h-12 w-12 transition-all duration-300 hover:scale-[1.05]" />
       ) : (
-        <WhatsUpIcon className="hover:fill-hover active:fill-pressed fill-yellow_main h-8 w-8 transition-all duration-500" />
+        <WhatsUpIcon className="fill-yellow_main h-8 w-8 transition-all duration-500 hover:fill-hover active:fill-pressed" />
       )}
     </a>
   );

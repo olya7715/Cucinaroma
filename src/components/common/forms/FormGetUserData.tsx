@@ -1,10 +1,11 @@
 "use client";
 
-import ButtonYelow from "../ButtonYelow";
-import { cn } from "@/utils/cn";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import IconError from "@/assets/icons/icon_error.svg";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { setClarityTag, trackClarityEvent } from "@/utils/clarity";
+import { cn } from "@/utils/cn";
+import ButtonYelow from "../ButtonYelow";
 
 type Props = {
   title?: string;
@@ -34,6 +35,9 @@ function FormGetUserData({
   } = useForm<FormDataInputs>();
 
   const onSubmit: SubmitHandler<FormDataInputs> = async (dataUser) => {
+    trackClarityEvent("lead_form_submit_attempt");
+    setClarityTag("service", service);
+
     try {
       const response = await fetch("/api/send", {
         method: "POST",
@@ -50,12 +54,15 @@ function FormGetUserData({
       const data = await response.json();
 
       if (data.success) {
+        trackClarityEvent("lead_form_submit_success");
         toast.success("Запит відправлено успішно!");
       } else {
+        trackClarityEvent("lead_form_submit_error");
         toast.error("Помилка при надсиланні!");
       }
     } catch (error) {
       console.error("Error:", error);
+      trackClarityEvent("lead_form_submit_network_error");
       toast.error("Помилка мережі або сервера. Спробуйте ще раз.");
     }
   };
@@ -66,7 +73,7 @@ function FormGetUserData({
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
-      <h2 className="text-main_blue textH4 mb-2 text-center uppercase">
+      <h2 className="textH4 text-main_blue mb-2 text-center uppercase">
         {title}
       </h2>
       <ul className="mb-2 flex w-full flex-col gap-2">
@@ -81,7 +88,7 @@ function FormGetUserData({
                   required: "Це поле обов'язкове",
                   ...(field === "email" && {
                     pattern: {
-                      value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                      value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
                       message: "Невірний email формат",
                     },
                   }),
@@ -121,7 +128,7 @@ function FormGetUserData({
                     ? "Телефон"
                     : field === "email"
                       ? "Email"
-                      : "Ім`я"
+                      : "Ім'я"
                 }
               />
               {errors[field] && (

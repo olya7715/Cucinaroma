@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import LinkYelow from "@/components/common/Links/LinkYelow";
+import { trackClarityEvent } from "@/utils/clarity";
 import IconPrice from "../../../assets/icons/icon_price.svg";
 import IconTime from "../../../assets/icons/icon_time.svg";
 import { DataCardMaster } from "../../../data/dataMaster";
@@ -36,6 +39,7 @@ function CardMaster({
         href={`master/${page}`}
         linkTitle={linkTitle}
         className="text-center"
+        onClick={() => trackClarityEvent(`master_card_click_${page}`)}
       />
     </article>
   );
